@@ -1,0 +1,38 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.2-cli
+      - image: rabbitmq:3
+
+    steps:
+      - run:
+          name: Install PHP dependencies
+          command: sudo docker-php-ext-install bcmath
+
+      - checkout
+
+      - restore_cache:
+          keys:
+            - composer-{{ checksum "composer.json" }}
+
+      - run:
+          name: Install Composer dependencies
+          command: composer install -n --prefer-dist
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: composer-{{ checksum "composer.json" }}
+
+      - run:
+          name: Run Code Sniffer
+          command: vendor/bin/php-cs-fixer fix src --dry-run
+
+      - run:
+          name: Run Behat tests
+          command: |
+            dockerize -wait tcp://localhost:5672 -timeout 1m
+            cp behat.ci.yml behat.yml
+            vendor/bin/behat

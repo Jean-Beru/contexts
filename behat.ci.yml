@@ -1,0 +1,10 @@
+default:
+    suites:
+        default:
+            paths: [ %paths.base%/tests/features ]
+            contexts:
+                - JeanBeru\Context\RabbitMQContext:
+                    host: localhost
+                    port: 5672
+                    user: guest
+                    password: guest

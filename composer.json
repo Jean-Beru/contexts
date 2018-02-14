@@ -1,0 +1,23 @@
+{
+  "name": "jean-beru/contexts",
+  "description": "Behat extension for RabbitMQ",
+  "keywords": [
+    "behat",
+    "rabbitmq"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "JeanBeru\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.6|>=7.0",
+    "behat/behat": "^3.0",
+    "php-amqplib/php-amqplib": "^2.6"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.10"
+  }
+}
