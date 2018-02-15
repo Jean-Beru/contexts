@@ -21,10 +21,14 @@ class RabbitMQContext implements Context
     /** @var array */
     private $messages = [];
 
-    public function __construct($host, $port, $user, $password, $vhost = '/')
+    /** @var array */
+    private $consumers;
+
+    public function __construct($host, $port, $user, $password, $vhost = '/', array $consumers = [])
     {
         $connection = new AMQPStreamConnection($host, $port, $user, $password, $vhost);
         $this->channel = $connection->channel();
+        $this->consumers = $consumers;
     }
 
     /**
@@ -156,6 +160,28 @@ class RabbitMQContext implements Context
             $plural = $messageCount < 2 ? 'message' : 'messages';
 
             throw new \LogicException(sprintf('Expected %d %s containing "%s" in queue, %d found', $count, $plural, $text, $messageCount));
+        }
+    }
+
+    /**
+     * @When :consumer consumes :count message(s) from :queue
+     */
+    public function iConsumeMessagesFromQueueWithConsumer($consumer, $count, $queue)
+    {
+        if (!isset($this->consumers[$consumer])) {
+            throw new \Exception('Unknown consumer');
+        }
+
+
+        $messages = $this->getMessages($queue);
+
+        if (0 === count($messages)) {
+            throw new \Exception('No message to consume');
+        }
+
+        while ($count--) {
+            $message = array_shift($this->messages[$queue]);
+            $this->consumers[$consumer]($message);
         }
     }
 
