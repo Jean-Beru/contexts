@@ -8,3 +8,5 @@ default:
                     port: 5672
                     user: guest
                     password: guest
+                    consumers:
+                        myConsumer: [JeanBeru\Tests\Consumer\MyConsumer, execute]

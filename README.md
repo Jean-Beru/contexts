@@ -1,5 +1,6 @@
 Contexts
 ========
+[![CircleCI](https://circleci.com/gh/Jean-Beru/contexts/tree/master.svg?style=svg)](https://circleci.com/gh/Jean-Beru/contexts/tree/master)
 
 Collections of (useful ?) Behat contexts.
 
