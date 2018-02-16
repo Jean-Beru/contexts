@@ -7,7 +7,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
-class RabbitMQContext implements Context
+class RabbitMqContext implements Context
 {
     /** @var AMQPChannel */
     private $channel;
@@ -69,8 +69,8 @@ class RabbitMQContext implements Context
     }
 
     /**
-     * @Given There is a exchange binding from :exchangeSource to :exchangeDestination
-     * @Given There is a exchange binding from :exchangeSource to :exchangeDestination with :routingKey routing key
+     * @Given There is an exchange binding from :exchangeSource to :exchangeDestination
+     * @Given There is an exchange binding from :exchangeSource to :exchangeDestination with :routingKey routing key
      */
     public function thereIsAnExchangeBindingWithRoutingKey($exchangeSource, $exchangeDestination, $routingKey = '')
     {

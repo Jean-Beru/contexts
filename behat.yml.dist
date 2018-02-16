@@ -3,7 +3,7 @@ default:
         default:
             paths: [ %paths.base%/tests/features ]
             contexts:
-                - JeanBeru\Context\RabbitMQContext:
+                - JeanBeru\Context\RabbitMqContext:
                     host: rabbitmq
                     port: 5672
                     user: guest
