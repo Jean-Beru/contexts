@@ -1,7 +1,8 @@
 Contexts
 ========
 
-Collections of (useful ?) Behat contexts.
+Collections of Behat contexts :
+ * [RabbitMqContext](./doc/RabbitMqContext.md)
 
 
 Requirements
@@ -15,50 +16,6 @@ Installation
 
 Install via Composer:
 `composer require --dev Jean-Beru/contexts`
-
-
-RabbitMQ context
-================
-
-Usage
------
-
-In behat.yml, enable context:
-```yaml
-default:
-    suites:
-        default:
-            contexts:
-                - JeanBeru\Context\RabbitMQContext
-```
-
-
-Configuration
--------------
-
-* `host`: RabbitMQ host
-* `port`: RabbitMQ port
-* `user`: RabbitMQ user
-* `password`: RabbitMQ password
-* `vhost` (default : "/"): Optional RabbitMQ vhost
-
-     
-Configuration example
----------------------
-To connect context to RabbitMQ, define host, port and credentials:
-
-```yaml
-default:
-    suites:
-        default:
-            contexts:
-                - JeanBeru\Context\RabbitMQContext:
-                    host: rabbitmq
-                    port: 5672
-                    user: guest
-                    password: guest
-                    vhost: /
-```
 
 
 Want to contribute ?
